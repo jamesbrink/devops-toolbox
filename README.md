@@ -129,7 +129,7 @@ jamesbrink/devops-toolbox   latest                                  0c49b70fd2fc
 | `TERRAFORM_DOCS_VERSION`  | `v0.9.1`         | [terraform-docs] version to install                   |
 | `TERRAFORM_VERSION`       | `0.12.24`        | [terraform] Default version of Terraform to install   |
 | `TFENV_VERSION`           | `2.0.0`          | [tfenv] Terraform Version manager version to install  |
-| `TFLINT_VERSION`          | `v0.15.3`        | [tflint] version to install                           |
+| `TFLINT_VERSION`          | `0.22.0`        | [tflint] version to install                           |
 
 ## Usage
 

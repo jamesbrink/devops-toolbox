@@ -56,11 +56,11 @@ ARG PACKER_VERSION=1.5.5
 ARG SPIN_VERSION=1.14.0
 ARG STARSHIP_VERSION=v0.47.0
 ARG TERRAFORM_DOCS_VERSION=v0.9.1
-ARG TFLINT_VERSION=v0.15.3
+ARG TFLINT_VERSION=0.22.0
 RUN set -xe; \
     curl -fSL https://github.com/segmentio/terraform-docs/releases/download/${TERRAFORM_DOCS_VERSION}/terraform-docs-${TERRAFORM_DOCS_VERSION}-linux-amd64 -o /usr/local/bin/terraform-docs; \
     chmod 0755 /usr/local/bin/terraform-docs; \
-    curl -fSL https://github.com/terraform-linters/tflint/releases/download/${TFLINT_VERSION}/tflint_linux_amd64.zip -o /tmp/tflint.zip; \
+    curl -fSL https://github.com/terraform-linters/tflint/releases/download/v${TFLINT_VERSION}/tflint_linux_amd64.zip -o /tmp/tflint.zip; \
     unzip /tmp/tflint.zip; \
     rm /tmp/tflint.zip; \
     mv tflint /usr/local/bin/; \

@@ -37,8 +37,8 @@ STARSHIP_VERSION        ?= v0.47.0
 TERRAFORM_DOCS_VERSION  ?= v0.9.1
 TERRAFORM_LSP_VERSION   ?= 0.0.10
 TERRAFORM_VERSION       ?= 0.12.24
-TFENV_VERSION           ?=2.0.0
-TFLINT_VERSION          ?= v0.15.3
+TFENV_VERSION           ?= 2.0.0
+TFLINT_VERSION          ?= 0.22.0
 
 # Default target is to build container
 .PHONY: default
