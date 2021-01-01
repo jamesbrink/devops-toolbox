@@ -125,11 +125,11 @@ jamesbrink/devops-toolbox   latest                                  0c49b70fd2fc
 | `LEGO_VERSION`            | `3.8.0`          | Version of [lego] to install                          |
 | `PACKER_VERSION`          | `1.5.5`          | [packer] version to install                           |
 | `SPIN_VERSION`            | `1.14.0`         | [spin] (Spinnaker CLI) version to install             |
-| `STARSHIP_VERSION`        | `v0.47.0`        | [starship] version to install                         |
-| `TERRAFORM_DOCS_VERSION`  | `v0.9.1`         | [terraform-docs] version to install                   |
+| `STARSHIP_VERSION`        | `0.47.0`         | [starship] version to install                         |
+| `TERRAFORM_DOCS_VERSION`  | `0.10.1`         | [terraform-docs] version to install                   |
 | `TERRAFORM_VERSION`       | `0.12.24`        | [terraform] Default version of Terraform to install   |
 | `TFENV_VERSION`           | `2.0.0`          | [tfenv] Terraform Version manager version to install  |
-| `TFLINT_VERSION`          | `0.22.0`        | [tflint] version to install                           |
+| `TFLINT_VERSION`          | `0.22.0`         | [tflint] version to install                           |
 
 ## Usage
 

@@ -54,11 +54,11 @@ ARG KUBECTL_VERSION=v1.18.0
 ARG LEGO_VERSION=3.8.0
 ARG PACKER_VERSION=1.5.5
 ARG SPIN_VERSION=1.14.0
-ARG STARSHIP_VERSION=v0.47.0
-ARG TERRAFORM_DOCS_VERSION=v0.9.1
+ARG STARSHIP_VERSION=0.47.0
+ARG TERRAFORM_DOCS_VERSION=0.10.1
 ARG TFLINT_VERSION=0.22.0
 RUN set -xe; \
-    curl -fSL https://github.com/segmentio/terraform-docs/releases/download/${TERRAFORM_DOCS_VERSION}/terraform-docs-${TERRAFORM_DOCS_VERSION}-linux-amd64 -o /usr/local/bin/terraform-docs; \
+    curl -fSL https://github.com/segmentio/terraform-docs/releases/download/v${TERRAFORM_DOCS_VERSION}/terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64 -o /usr/local/bin/terraform-docs; \
     chmod 0755 /usr/local/bin/terraform-docs; \
     curl -fSL https://github.com/terraform-linters/tflint/releases/download/v${TFLINT_VERSION}/tflint_linux_amd64.zip -o /tmp/tflint.zip; \
     unzip /tmp/tflint.zip; \
@@ -70,7 +70,7 @@ RUN set -xe; \
     rm /tmp/packer.zip; \
     mv packer /usr/local/bin/packer; \
     chmod 0755 /usr/local/bin/packer; \
-    curl -fSL https://github.com/starship/starship/releases/download/${STARSHIP_VERSION}/starship-x86_64-unknown-linux-musl.tar.gz -o /tmp/starship.tar.gz; \
+    curl -fSL https://github.com/starship/starship/releases/download/v${STARSHIP_VERSION}/starship-x86_64-unknown-linux-musl.tar.gz -o /tmp/starship.tar.gz; \
     tar xfv /tmp/starship.tar.gz; \
     rm /tmp/starship.tar.gz; \
     mv starship /usr/local/bin/; \
