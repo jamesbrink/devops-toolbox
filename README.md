@@ -1,6 +1,6 @@
-# SynapseStudios DevOps ToolBox
+# DevOps ToolBox
 
- [![Docker Automated build](https://img.shields.io/docker/automated/synapsestudios/devops-toolbox.svg)](https://hub.docker.com/r/synapsestudios/devops-toolbox/) [![Docker Pulls](https://img.shields.io/docker/pulls/synapsestudios/devops-toolbox.svg)](https://hub.docker.com/r/synapsestudios/devops-toolbox/) [![Docker Stars](https://img.shields.io/docker/stars/synapsestudios/devops-toolbox.svg)](https://hub.docker.com/r/synapsestudios/devops-toolbox/) [![](https://images.microbadger.com/badges/image/synapsestudios/devops-toolbox.svg)](https://microbadger.com/images/synapsestudios/devops-toolbox "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/synapsestudios/devops-toolbox.svg)](https://microbadger.com/images/synapsestudios/devops-toolbox "Get your own version badge on microbadger.com")  
+ [![Docker Automated build](https://img.shields.io/docker/automated/jamesbrink/devops-toolbox.svg)](https://hub.docker.com/r/jamesbrink/devops-toolbox/) [![Docker Pulls](https://img.shields.io/docker/pulls/jamesbrink/devops-toolbox.svg)](https://hub.docker.com/r/jamesbrink/devops-toolbox/) [![Docker Stars](https://img.shields.io/docker/stars/jamesbrink/devops-toolbox.svg)](https://hub.docker.com/r/jamesbrink/devops-toolbox/) [![](https://images.microbadger.com/badges/image/jamesbrink/devops-toolbox.svg)](https://microbadger.com/images/jamesbrink/devops-toolbox "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/jamesbrink/devops-toolbox.svg)](https://microbadger.com/images/jamesbrink/devops-toolbox "Get your own version badge on microbadger.com")  
 
 
 ## About
@@ -98,36 +98,38 @@ BASE_IMAGE='node:12.16.1-alpine3.11' make
 # Given you have already built the default image, your results may look like the following
 make list
 REPOSITORY                   TAG                 IMAGE ID            CREATED              SIZE
-synapsestudios/devops-toolbox   fdb4f15-node-12.16.1-alpine3.11         d9d978108f60        18 seconds ago      1.96GB
-synapsestudios/devops-toolbox   latest-node-12.16.1-alpine3.11          d9d978108f60        18 seconds ago      1.96GB
-synapsestudios/devops-toolbox   fdb4f15-alpine-3.12                     f4e84d9c651b        11 minutes ago      1.83GB
-synapsestudios/devops-toolbox   latest-alpine-3.12                      f4e84d9c651b        11 minutes ago      1.83GB
-synapsestudios/devops-toolbox   fdb4f15                                 0c49b70fd2fc        11 minutes ago      1.83GB
-synapsestudios/devops-toolbox   latest                                  0c49b70fd2fc        11 minutes ago      1.83GB
+jamesbrink/devops-toolbox   fdb4f15-node-12.16.1-alpine3.11         d9d978108f60        18 seconds ago      1.96GB
+jamesbrink/devops-toolbox   latest-node-12.16.1-alpine3.11          d9d978108f60        18 seconds ago      1.96GB
+jamesbrink/devops-toolbox   fdb4f15-alpine-3.12                     f4e84d9c651b        11 minutes ago      1.83GB
+jamesbrink/devops-toolbox   latest-alpine-3.12                      f4e84d9c651b        11 minutes ago      1.83GB
+jamesbrink/devops-toolbox   fdb4f15                                 0c49b70fd2fc        11 minutes ago      1.83GB
+jamesbrink/devops-toolbox   latest                                  0c49b70fd2fc        11 minutes ago      1.83GB
 
 ```
 
-| Variable                 | Default Value    | Description                                           |
-| ------------------------ | ---------------- | ----------------------------------------------------- |
-| `AZURE_CLI_VERSION`      | `2.8.0`          | Version of the Azure CLI to install                   |
-| `BASE_IMAGE`             | `alpine:3.12`    | Base Docker Image to build from ([Alpine] Only)       |
-| `CIRCLE_CI_CLI_VERSION`  | `0.1.8599`       | Version of the CircleCI CLI to install                |
-| `DOCKER_GID`             | `1001`           | Group ID to use within the container                  |
-| `DOCKER_GROUP`           | `synapse`        | Group Name to use within the container                |
-| `DOCKER_UID`             | `1001`           | User ID to use within the container                   |
-| `DOCKER_USER`            | `synapse`        | User Name to use within the container                 |
-| `FLY_VERSION`            | `6.0.0`          | [fly] (Concourse CI CLI) version to install           |
-| `GIT_CRYPT_VERSION`      | `master`         | [git-crypt] version (commit ref) to build and install |
-| `K6_VERSION`             | `v0.26.2`        | Version of LoadImpact's k6 to install                 |
-| `KOPS_VERSION`           | `v1.17.0-beta.1` | [kops] version to install                             |
-| `KUBECTL_VERSION`        | `v1.18.0`        | [kubectl] version to install                          |
-| `LEGO_VERSION`           | `3.8.0`          | Version of [lego] to install                          |
-| `PACKER_VERSION`         | `1.5.5`          | [packer] version to install                           |
-| `SPIN_VERSION`           | `1.14.0`         | [spin] (Spinnaker CLI) version to install             |
-| `STARSHIP_VERSION`       | `v0.46.2`        | [starship] version to install                         |
-| `TERRAFORM_DOCS_VERSION` | `v0.9.1`         | [terraform-docs] version to install                   |
-| `TERRAFORM_VERSION`      | `0.12.24`        | [terraform] version to install                        |
-| `TFLINT_VERSION`         | `v0.15.3`        | [tflint] version to install                           |
+| Variable                  | Default Value    | Description                                           |
+| ------------------------- | ---------------- | ----------------------------------------------------- |
+| `AZURE_CLI_VERSION`       | `2.8.0`          | Version of the Azure CLI to install                   |
+| `BASE_IMAGE`              | `alpine:3.12`    | Base Docker Image to build from ([Alpine] Only)       |
+| `CIRCLE_CI_CLI_VERSION`   | `0.1.8599`       | Version of the CircleCI CLI to install                |
+| `CLOUDMONKEY_CLI_VERSION` | `6.1.0`          | [cmk] CloudStack CloudMonkey CLI Version to install   |
+| `DOCKER_GID`              | `1001`           | Group ID to use within the container                  |
+| `DOCKER_GROUP`            | `synapse`        | Group Name to use within the container                |
+| `DOCKER_UID`              | `1001`           | User ID to use within the container                   |
+| `DOCKER_USER`             | `synapse`        | User Name to use within the container                 |
+| `FLY_VERSION`             | `6.0.0`          | [fly] (Concourse CI CLI) version to install           |
+| `GIT_CRYPT_VERSION`       | `master`         | [git-crypt] version (commit ref) to build and install |
+| `K6_VERSION`              | `v0.26.2`        | Version of LoadImpact's k6 to install                 |
+| `KOPS_VERSION`            | `v1.17.0-beta.1` | [kops] version to install                             |
+| `KUBECTL_VERSION`         | `v1.18.0`        | [kubectl] version to install                          |
+| `LEGO_VERSION`            | `3.8.0`          | Version of [lego] to install                          |
+| `PACKER_VERSION`          | `1.5.5`          | [packer] version to install                           |
+| `SPIN_VERSION`            | `1.14.0`         | [spin] (Spinnaker CLI) version to install             |
+| `STARSHIP_VERSION`        | `v0.47.0`        | [starship] version to install                         |
+| `TERRAFORM_DOCS_VERSION`  | `v0.9.1`         | [terraform-docs] version to install                   |
+| `TERRAFORM_VERSION`       | `0.12.24`        | [terraform] Default version of Terraform to install   |
+| `TFENV_VERSION`           | `2.0.0`          | [tfenv] Terraform Version manager version to install  |
+| `TFLINT_VERSION`          | `v0.15.3`        | [tflint] version to install                           |
 
 ## Usage
 
@@ -143,7 +145,7 @@ To run the container:
 docker run -i -t \
     --env-file .env \
     --name toolbox \
-    synapsestudios/devops-toolbox
+    jamesbrink/devops-toolbox
 ```
 
 Or to run with DIND (Docker in Docker) support:
@@ -153,7 +155,7 @@ docker run -i -t \
     --name toolbox \
     --privileged \
     -v /var/run/docker.sock:/var/run/docker.sock \
-    synapsestudios/devops-toolbox
+    jamesbrink/devops-toolbox
 ```
 
 Optionally running with host network mode (Does not work correctly on macOS):
@@ -164,7 +166,7 @@ docker run -i -t \
     --privileged \
     -v /var/run/docker.sock:/var/run/docker.sock \
     --net=host \
-    synapsestudios/devops-toolbox
+    jamesbrink/devops-toolbox
 ```
 
 Run with a bind mounted volume:
@@ -176,7 +178,7 @@ docker run -i -t \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v $(pwd)/toolbox:/home \
     --net=host \
-    synapsestudios/devops-toolbox
+    jamesbrink/devops-toolbox
 ```
 
 Once launched you will be authenticated to the your AWS Account (If credentials provided) in an interactive ZSH terminal. ZSH is used because everything else is just wrong.
@@ -214,6 +216,7 @@ The following ENV variables should be set in the `.env`.
 [azure-cli]: https://github.com/Azure/azure-cli
 [certbot]: https://certbot.eff.org/
 [CircleCI CLI]: https://github.com/CircleCI-Public/circleci-cli
+[cmk]: https://github.com/apache/cloudstack-cloudmonkey
 [cw]: https://github.com/lucagrulla/cw
 [fira-code]: https://github.com/tonsky/FiraCode
 [fly]: https://concourse-ci.org/fly.html
@@ -236,5 +239,6 @@ The following ENV variables should be set in the `.env`.
 [terraform-docs]: https://github.com/segmentio/terraform-docs
 [terraform-lsp]: https://github.com/juliosueiras/terraform-lsp
 [terraform]:https://www.terraform.io/
+[tfenv]: https://github.com/tfutils/tfenv
 [tflint]: https://github.com/terraform-linters/tflint
 [vscode-remote]: https://code.visualstudio.com/docs/remote/remote-overview

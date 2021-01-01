@@ -14,6 +14,7 @@ RUN set -xe; \
         gawk \
         gettext \
         git \
+        gnupg \
         grep \
         htop \
         jq \
@@ -53,9 +54,8 @@ ARG KUBECTL_VERSION=v1.18.0
 ARG LEGO_VERSION=3.8.0
 ARG PACKER_VERSION=1.5.5
 ARG SPIN_VERSION=1.14.0
-ARG STARSHIP_VERSION=v0.46.2
+ARG STARSHIP_VERSION=v0.47.0
 ARG TERRAFORM_DOCS_VERSION=v0.9.1
-ARG TERRAFORM_VERSION=0.12.24
 ARG TFLINT_VERSION=v0.15.3
 RUN set -xe; \
     curl -fSL https://github.com/segmentio/terraform-docs/releases/download/${TERRAFORM_DOCS_VERSION}/terraform-docs-${TERRAFORM_DOCS_VERSION}-linux-amd64 -o /usr/local/bin/terraform-docs; \
@@ -65,11 +65,6 @@ RUN set -xe; \
     rm /tmp/tflint.zip; \
     mv tflint /usr/local/bin/; \
     chmod 0755 /usr/local/bin/tflint; \
-    curl -fSL https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -o /tmp/terraform.zip; \
-    unzip /tmp/terraform.zip; \
-    rm /tmp/terraform.zip; \
-    mv terraform /usr/local/bin; \
-    chmod 0755 /usr/local/bin/terraform; \
     curl -fSL https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip -o /tmp/packer.zip; \
     unzip /tmp/packer.zip; \
     rm /tmp/packer.zip; \
@@ -118,6 +113,7 @@ RUN set -xe; \
 
 # Build additional packages
 ARG AZURE_CLI_VERSION=2.8.0
+ARG CLOUDMONKEY_CLI_VERSION=6.1.0
 ARG GIT_CRYPT_VERSION=master
 ARG KIND_VERSION=v0.7.0
 ARG TERRAFORM_LSP_VERSION=0.0.10
@@ -172,6 +168,16 @@ RUN set -xe; \
     rm -rf terraform-lsp; \
     rm -rf /root/go; \
     rm -rf /root/.bin; \
+    cd /tmp; \
+    curl -fSL https://github.com/apache/cloudstack-cloudmonkey/archive/${CLOUDMONKEY_CLI_VERSION}.tar.gz -o ${CLOUDMONKEY_CLI_VERSION}.tar.gz; \
+    tar xfv ${CLOUDMONKEY_CLI_VERSION}.tar.gz; \
+    rm ${CLOUDMONKEY_CLI_VERSION}.tar.gz; \
+    cd cloudstack-cloudmonkey-${CLOUDMONKEY_CLI_VERSION}; \
+    make all; \
+    cp ./bin/cmk /usr/local/bin; \
+    chmod 0755 /usr/local/bin/cmk; \
+    cd /tmp; \
+    rm -rf cloudstack-cloudmonkey-${CLOUDMONKEY_CLI_VERSION}; \
     apk del .build-deps; \
     mkdir -p /usr/local/share/zsh/site-functions; \
     /usr/local/bin/kind completion zsh > /usr/local/share/zsh/site-functions/_kind;
@@ -184,10 +190,19 @@ ARG DOCKER_GID="1010"
 ARG DOCKER_GROUP="synapse"
 ARG DOCKER_UID="1010"
 ARG DOCKER_USER="synapse"
+ARG TERRAFORM_VERSION=0.12.24
+ARG TFENV_VERSION=2.0.0
 RUN set -xe; \
     if ! $(id -g "$DOCKER_GROUP" 2>/dev/null); then \
 		addgroup -g ${DOCKER_GID} -S ${DOCKER_GROUP}; \
 	fi; \
+    cd /tmp; \
+    curl -fSL https://github.com/tfutils/tfenv/archive/v${TFENV_VERSION}.tar.gz -o v${TFENV_VERSION}.tar.gz; \
+    tar xfv v${TFENV_VERSION}.tar.gz; \
+    rm v${TFENV_VERSION}.tar.gz; \
+    mv tfenv-${TFENV_VERSION} /etc/skel/.tfenv; \
+    /etc/skel/.tfenv/bin/tfenv install ${TERRAFORM_VERSION}; \
+    /etc/skel/.tfenv/bin/tfenv use ${TERRAFORM_VERSION}; \
 	adduser -u ${DOCKER_UID} -S -k /etc/skel -h /home/${DOCKER_USER} -s /bin/zsh -G ${DOCKER_GROUP} ${DOCKER_USER} ;\
 	echo 'Set disable_coredump false' >>/etc/sudo.conf; \
 	echo "${DOCKER_USER} ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/${DOCKER_USER}; \

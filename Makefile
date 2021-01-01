@@ -1,8 +1,8 @@
 #!/usr/bin/make -f
 
 SHELL                   := /usr/bin/env bash
-REPO_NAMESPACE          ?= synapsestudios
-REPO_USERNAME           ?= synapsestudios
+REPO_NAMESPACE          ?= jamesbrink
+REPO_USERNAME           ?= jamesbrink
 REPO_API_URL            ?= https://hub.docker.com/v2
 IMAGE_NAME              ?= devops-toolbox
 TAG_SUFFIX              ?= $(shell echo "-$(BASE_IMAGE)" | $(SED) 's|:|-|g' | $(SED) 's|/|_|g' 2>/dev/null )
@@ -19,6 +19,7 @@ RELEASES                ?= latest
 AZURE_CLI_VERSION       ?= 2.8.0
 BASE_IMAGE              ?= alpine:3.12
 CIRCLE_CI_CLI_VERSION   ?= 0.1.8599
+CLOUDMONKEY_CLI_VERSION ?=6.1.0
 DOCKER_GID              ?= 1001
 DOCKER_GROUP            ?= synapse
 DOCKER_UID              ?= 1001
@@ -32,10 +33,11 @@ KUBECTL_VERSION         ?= v1.18.0
 LEGO_VERSION            ?= 3.8.0
 PACKER_VERSION          ?= 1.5.5
 SPIN_VERSION            ?= 1.14.0
-STARSHIP_VERSION        ?= v0.46.2
+STARSHIP_VERSION        ?= v0.47.0
 TERRAFORM_DOCS_VERSION  ?= v0.9.1
 TERRAFORM_LSP_VERSION   ?= 0.0.10
 TERRAFORM_VERSION       ?= 0.12.24
+TFENV_VERSION           ?=2.0.0
 TFLINT_VERSION          ?= v0.15.3
 
 # Default target is to build container
@@ -52,6 +54,7 @@ $(RELEASES):
 		--build-arg BASE_IMAGE=$(BASE_IMAGE) \
 		--build-arg BUILD_DATE=$(BUILD_DATE) \
 		--build-arg CIRCLE_CI_CLI_VERSION=$(CIRCLE_CI_CLI_VERSION) \
+		--build-arg CLOUDMONKEY_CLI_VERSION=${CLOUDMONKEY_CLI_VERSION} \
 		--build-arg DOCKER_GID=$(DOCKER_GID) \
 		--build-arg DOCKER_GROUP=$(DOCKER_GROUP) \
 		--build-arg DOCKER_UID=$(DOCKER_UID) \
@@ -68,6 +71,7 @@ $(RELEASES):
 		--build-arg TERRAFORM_DOCS_VERSION=$(TERRAFORM_DOCS_VERSION) \
 		--build-arg TERRAFORM_LSP_VERSION=$(TERRAFORM_LSP_VERSION) \
 		--build-arg TERRAFORM_VERSION=$(TERRAFORM_VERSION) \
+		--build-arg TFENV_VERSION=${TFENV_VERSION} \
 		--build-arg TFLINT_VERSION=$(TFLINT_VERSION) \
 		--build-arg VCS_REF=$(VCS_REF) \
 		--build-arg VERSION=$(VERSION) \

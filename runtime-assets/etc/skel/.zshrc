@@ -54,6 +54,6 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/.tfenv/bin:$PATH
 
 eval "$(starship init zsh)"
